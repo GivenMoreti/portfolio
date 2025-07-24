@@ -50,13 +50,19 @@ export default function ContactMe() {
       return;
     }
 
+    console.log({
+      service: import.meta.env.VITE_EMAILJS_SERVICE_ID,
+      template: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+      publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+    });
+
     //RECEIVE EMAILS FROM THE FORM SEND BY CLIENTS
     emailjs
       .send(
-        import.meta.env.EMAILJS_SERVICE_ID,
-        import.meta.env.EMAILJS_TEMPLATE_ID,
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         formData,
-        import.meta.env.EMAILJS_PUBLIC_KEY
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       )
       .then(() => {
         setSubmitStatus("success");
@@ -76,7 +82,7 @@ export default function ContactMe() {
       <Typography
         variant="body1"
         color="text.secondary"
-        paragraph
+      
         textAlign="center"
       >
         Have a question or want to work together? Fill out the form below!
@@ -142,8 +148,9 @@ export default function ContactMe() {
           size="large"
           fullWidth
           sx={{ mt: 3, mb: 2 }}
+          disabled={submitStatus === "success"}
         >
-          Send Message
+          {submitStatus === "success"?"Sent":"Send Message"}
         </Button>
       </Box>
     </Container>
