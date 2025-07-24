@@ -21,7 +21,7 @@ export default function Footer() {
     {
       name: 'LinkedIn',
       icon: <LinkedInIcon color="primary" />,
-      url: 'https://www.linkedin.com/in/tlou-given-moreti/',
+      url: 'https://www.linkedin.com/in/tlou-given-moreti-31b1bb331/',
       label: 'View LinkedIn Profile',
     },
     {

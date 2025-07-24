@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Container,
   Typography,
@@ -6,42 +6,42 @@ import {
   Button,
   Box,
   Alert,
-} from '@mui/material';
+} from "@mui/material";
+import emailjs from "@emailjs/browser";
 
 export default function ContactMe() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
+    name: "",
+    email: "",
+    message: "",
   });
 
   const [submitStatus, setSubmitStatus] = useState(null); // 'success' or 'error'
   const [errors, setErrors] = useState({});
 
-  // Handle input changes
+  // HaANDLE INPUT CHANGES
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    // Clear error when user starts typing
+
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: null }));
     }
   };
 
-  // Simple validation
+  //INPUT FIELDS VALIDATION
   const validate = () => {
     const newErrors = {};
-    if (!formData.name.trim()) newErrors.name = 'Name is required';
+    if (!formData.name.trim()) newErrors.name = "Name is required";
     if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
+      newErrors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Email is invalid';
+      newErrors.email = "Email is invalid";
     }
-    if (!formData.message.trim()) newErrors.message = 'Message is required';
+    if (!formData.message.trim()) newErrors.message = "Message is required";
     return newErrors;
   };
 
-  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     const newErrors = validate();
@@ -50,17 +50,22 @@ export default function ContactMe() {
       return;
     }
 
-    // Simulate form submission
-    console.log('Form Data:', formData);
-
-    // Here you'd normally send data to backend or EmailJS
-    // Example: axios.post('/api/contact', formData)
-
-    setSubmitStatus('success');
-    setFormData({ name: '', email: '', message: '' }); // Reset form
-
-    // Clear success message after 5 seconds
-    setTimeout(() => setSubmitStatus(null), 5000);
+    //RECEIVE EMAILS FROM THE FORM SEND BY CLIENTS
+    emailjs
+      .send(
+        import.meta.env.EMAILJS_SERVICE_ID,
+        import.meta.env.EMAILJS_TEMPLATE_ID,
+        formData,
+        import.meta.env.EMAILJS_PUBLIC_KEY
+      )
+      .then(() => {
+        setSubmitStatus("success");
+        setFormData({ name: "", email: "", message: "" });
+        setTimeout(() => setSubmitStatus(null), 4000);
+      })
+      .catch(() => {
+        setSubmitStatus("error");
+      });
   };
 
   return (
@@ -68,11 +73,16 @@ export default function ContactMe() {
       <Typography variant="h4" component="h1" gutterBottom textAlign="center">
         Contact Me
       </Typography>
-      <Typography variant="body1" color="text.secondary" paragraph textAlign="center">
+      <Typography
+        variant="body1"
+        color="text.secondary"
+        paragraph
+        textAlign="center"
+      >
         Have a question or want to work together? Fill out the form below!
       </Typography>
 
-      {submitStatus === 'success' && (
+      {submitStatus === "success" && (
         <Alert severity="success" sx={{ mb: 3 }}>
           Your message has been sent! I'll get back to you soon.
         </Alert>
