@@ -1,0 +1,6 @@
+My virtual CV includes a professional introduction,
+a detailed education history (both past and current),
+a showcase of technical skills, individual and 
+collaborative projects, a contact form for service inquiries or
+recommendations, 
+and links to my GitHub repositories.
