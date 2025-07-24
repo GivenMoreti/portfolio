@@ -46,6 +46,16 @@ export default function Intro() {
             >
               Download My Resume
             </Button>
+             <Button
+    variant="outlined"
+    component="a"
+    href="/cv.pdf"
+    target="_blank"
+    rel="noopener noreferrer"
+    sx={{ px: 4 }}
+  >
+    View Resume
+  </Button>
             <Button
               variant="outlined"
                 component={RouterLink}
