@@ -12,8 +12,6 @@ import {
 
 export default function Nav() {
   const navItems = [
-    { name: 'Projects', path: '/projects' },
-    { name: 'Skills', path: '/skills' },
     { name: 'Contact', path: '/contactme' },
   ];
 

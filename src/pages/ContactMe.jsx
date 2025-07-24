@@ -16,7 +16,7 @@ export default function ContactMe() {
     message: "",
   });
 
-  const [submitStatus, setSubmitStatus] = useState(null); // 'success' or 'error'
+  const [submitStatus, setSubmitStatus] = useState(null); 
   const [errors, setErrors] = useState({});
 
   // HaANDLE INPUT CHANGES
@@ -50,11 +50,11 @@ export default function ContactMe() {
       return;
     }
 
-    console.log({
-      service: import.meta.env.VITE_EMAILJS_SERVICE_ID,
-      template: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-      publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
-    });
+    // console.log({
+    //   service: import.meta.env.VITE_EMAILJS_SERVICE_ID,
+    //   template: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+    //   publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+    // });
 
     //RECEIVE EMAILS FROM THE FORM SEND BY CLIENTS
     emailjs
@@ -95,7 +95,7 @@ export default function ContactMe() {
       )}
 
       <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 3 }}>
-        {/* Name Field */}
+
         <TextField
           fullWidth
           label="Your Name"
@@ -140,7 +140,7 @@ export default function ContactMe() {
           required
         />
 
-        {/* Submit Button */}
+        {/* Submit a message Button */}
         <Button
           type="submit"
           variant="contained"

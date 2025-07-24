@@ -1,14 +1,6 @@
-import React from 'react';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import {
-  Container,
-  Box,
-  Card,
-  CardContent,
-  CardMedia,
-  Typography,
-  Button,
-} from '@mui/material';
+import React from "react";
+import { Container, Box, Typography } from "@mui/material";
+import ProjectCard from "./ProjectCard"; 
 
 export default function Projects() {
   const projects = [
@@ -42,89 +34,51 @@ export default function Projects() {
   ];
 
   return (
-    <Container sx={{ py: 6 }}>
-      <Typography variant="h4" component="h2" gutterBottom textAlign="center">
+    <Container sx={{ py: { xs: 6, md: 8 } }}>
+      <Typography
+        variant="h4"
+        component="h2"
+        gutterBottom
+        textAlign="center"
+        fontWeight={700}
+        sx={{ mb: 2 }}
+      >
         My Projects
+      </Typography>
+      <Typography
+        variant="body1"
+        color="text.secondary"
+        textAlign="center"
+        sx={{ mb: 5, maxWidth: "700px", mx: "auto" }}
+      >
+        Explore some of my work — from full-stack APIs to interactive games. All
+        open-source and built with passion.
       </Typography>
 
       <Box
         sx={{
-          display: 'flex',
-          flexDirection: 'row',
-          gap: 4,
-          overflowX: 'auto',
-          py: 2,  
-          scrollbarWidth: 'none',
-     
+          display: "flex",
+          flexDirection: { xs: "column", sm: "row" },
+          gap: { xs: 3, sm: 4 },
+          overflowX: { xs: "auto", sm: "unset" },
+          py: { xs: 1, sm: 0 },
+          px: { xs: 2, sm: 0 },
+          pb: 4,
+          "&::-webkit-scrollbar": { display: "none" },
+          scrollbarWidth: "none", 
+          alignItems: "stretch",
         }}
       >
         {projects.map((proj, index) => (
           <Box
             key={index}
             sx={{
-              minWidth: { xs: '280px', sm: '320px' }, // Consistent card width
-              flex: '0 0 auto', // Prevent shrinking
+              minWidth: { xs: "300px", sm: "320px" },
+              flex: { xs: "0 0 auto", sm: "1" },
+              maxWidth: { sm: "350px" },
             }}
           >
-            <Card
-              sx={{
-                height: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-                transition: 'transform 0.3s, box-shadow 0.3s',
-                '&:hover': {
-                  transform: 'translateY(-6px)',
-                  boxShadow: 8,
-                },
-              }}
-            >
-              <CardMedia
-                component="img"
-                height="180"
-                width="120"
-                image={proj.image}
-                alt={proj.name}
-                sx={{ objectFit: 'cover' }}
-              />
-              <CardContent sx={{ flexGrow: 1,maxWidth:320}}>
-                <Typography variant="h6" component="h3" gutterBottom>
-                  {proj.name}
-                </Typography>
-                <Typography variant="body2" color="text.secondary" paragraph>
-                  {proj.description.substring(0, 120)}...
-                </Typography>
-                <Box mt="auto">
-                  <Typography
-                    variant="caption"
-                    sx={{
-                      display: 'inline-block',
-                      bgcolor: 'gray',
-                      color: 'white',
-                      px: 1.5,
-                      py: 0.5,
-                      borderRadius: 1,
-                      fontSize: '0.75rem',
-                      fontWeight: 'bold',
-                    }}
-                  >
-                    {proj.framework}
-                  </Typography>
-                </Box>
-              </CardContent>
-              <Box p={2} pt={0}>
-                <Button
-                  size="small"
-                  variant="outlined"
-                  color="gray"
-                  href={proj.link}
-                  target="_blank"
-                >
-                  <GitHubIcon  />
-                  <span>View on GitHub</span>
-      
-                </Button>
-              </Box>
-            </Card>
+            <ProjectCard project={proj} />
           </Box>
         ))}
       </Box>
