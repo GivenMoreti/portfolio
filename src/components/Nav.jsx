@@ -75,9 +75,9 @@ export default function Nav() {
     <HideOnScroll>
       <AppBar position="fixed" color="transparent" elevation={0} sx={{
         backdropFilter: 'blur(12px)',
-        background: 'rgba(30, 34, 60, 0.55)',
-        borderBottom: '1.5px solid rgba(255,255,255,0.08)',
-        boxShadow: '0 4px 32px 0 rgba(0,0,0,0.12)',
+        background: 'rgba(52, 54, 66, 0.55)',
+        borderBottom: '1.5px solid rgba(134, 204, 237, 0.08)',
+        boxShadow: '0 4px 32px 0 rgba(139, 225, 233, 0.12)',
         zIndex: 1200
       }}>
         <Container maxWidth="lg">

@@ -7,18 +7,18 @@ import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#d02492',
+      main: '#0ff', // Neon blue
     },
     secondary: {
-      main: '#0095ed',
+      main: '#0ff',
     },
     background: {
-      default: '#f5d6e6',
+      default: '#f5fafd',
       paper: '#fff',
     },
   },
   typography: {
-    fontFamily: '"Poppins", "Noto Sans JP", "Comic Neue", cursive, sans-serif',
+    fontFamily: '"Roboto", "Segoe UI", Arial',
   },
 });
 
