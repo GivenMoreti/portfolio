@@ -1,6 +1,6 @@
 import React from "react";
-import { Container, Box, Typography } from "@mui/material";
-import ProjectCard from "./ProjectCard"; 
+import { Container, Typography, Grid, Box } from '@mui/material';
+import ProjectCard from "./ProjectCard";
 
 export default function Projects() {
   const projects = [
@@ -34,54 +34,22 @@ export default function Projects() {
   ];
 
   return (
-    <Container sx={{ py: { xs: 6, md: 8 } }}>
-      <Typography
-        variant="h4"
-        component="h2"
-        gutterBottom
-        textAlign="center"
-        fontWeight={700}
-        sx={{ mb: 2 }}
-      >
-        My Projects
-      </Typography>
-      <Typography
-        variant="body1"
-        color="text.secondary"
-        textAlign="center"
-        sx={{ mb: 5, maxWidth: "700px", mx: "auto" }}
-      >
-        Explore some of my work — from full-stack APIs to interactive games. All
-        open-source and built with passion.
-      </Typography>
-
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: { xs: "column", sm: "row" },
-          gap: { xs: 3, sm: 4 },
-          overflowX: { xs: "auto", sm: "unset" },
-          py: { xs: 1, sm: 0 },
-          px: { xs: 2, sm: 0 },
-          pb: 4,
-          "&::-webkit-scrollbar": { display: "none" },
-          scrollbarWidth: "none", 
-          alignItems: "stretch",
-        }}
-      >
-        {projects.map((proj, index) => (
-          <Box
-            key={index}
-            sx={{
-              minWidth: { xs: "300px", sm: "320px" },
-              flex: { xs: "0 0 auto", sm: "1" },
-              maxWidth: { sm: "350px" },
-            }}
-          >
-            <ProjectCard project={proj} />
-          </Box>
-        ))}
-      </Box>
-    </Container>
+  <Box component="section" py={8} sx={{ backgroundColor: 'background.paper' }}>
+      <Container maxWidth="lg">
+  <Typography variant="h4" align="center" color="primary" fontWeight={700} gutterBottom sx={{ fontFamily: 'Poppins, Noto Sans JP, Comic Neue, cursive, sans-serif' }}>
+          My Projects
+        </Typography>
+  <Typography variant="body1" align="center" color="text.secondary" sx={{ mb: 5, maxWidth: 700, mx: 'auto', fontFamily: 'Poppins, Noto Sans JP, Comic Neue, cursive, sans-serif' }}>
+          Explore some of my work — from full-stack APIs to interactive games. All open-source and built with passion.
+        </Typography>
+        <Grid container spacing={4} justifyContent="center">
+          {projects.map((proj, index) => (
+            <Grid item xs={12} sm={6} md={4} key={index} display="flex">
+              <ProjectCard project={proj} />
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+    </Box>
   );
 }

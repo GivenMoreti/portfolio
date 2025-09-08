@@ -7,6 +7,7 @@ import {
   Box,
   Alert,
 } from "@mui/material";
+
 import emailjs from "@emailjs/browser";
 
 export default function ContactMe() {
@@ -50,19 +51,21 @@ export default function ContactMe() {
       return;
     }
 
-    // console.log({
-    //   service: import.meta.env.VITE_EMAILJS_SERVICE_ID,
-    //   template: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-    //   publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
-    // });
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-    //RECEIVE EMAILS FROM THE FORM SEND BY CLIENTS
+    if (!serviceId || !templateId || !publicKey) {
+      setSubmitStatus("env-error");
+      return;
+    }
+
     emailjs
       .send(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        serviceId,
+        templateId,
         formData,
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+        publicKey
       )
       .then(() => {
         setSubmitStatus("success");
@@ -88,6 +91,12 @@ export default function ContactMe() {
         Have a question or want to work together? Fill out the form below!
       </Typography>
 
+
+      {submitStatus === "env-error" && (
+        <Alert severity="error" sx={{ mb: 3 }}>
+          Email service is not configured. Please contact the site owner or try again later.
+        </Alert>
+      )}
       {submitStatus === "success" && (
         <Alert severity="success" sx={{ mb: 3 }}>
           Your message has been sent! I'll get back to you soon.

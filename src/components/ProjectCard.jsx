@@ -1,93 +1,55 @@
 import React from "react";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  Typography,
-  Button,
-  Box,
-} from "@mui/material";
+import { Card, CardContent, CardMedia, Typography, Button, Box, Chip } from '@mui/material';
+import { FaGithub } from 'react-icons/fa';
 
 export default function ProjectCard({ project }) {
   return (
-    <Card
-      sx={{
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        borderRadius: 2,
-        transition: "transform 0.3s ease, box-shadow 0.3s ease",
-        boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
-        "&:hover": {
-          transform: "translateY(-8px)",
-          boxShadow: "0 12px 24px rgba(0,0,0,0.15)",
-        },
-      }}
-    >
+    <Card sx={{
+      display: 'flex',
+      flexDirection: 'column',
+      borderRadius: 3,
+      boxShadow: 3,
+      height: '100%',
+      minWidth: 280,
+      maxWidth: 350,
+      margin: '0 auto',
+      transition: 'transform 0.3s, box-shadow 0.3s',
+      '&:hover': {
+        transform: 'translateY(-8px) scale(1.03)',
+        boxShadow: 6,
+      },
+    }}>
       <CardMedia
         component="img"
         height="180"
         image={project.image}
         alt={project.name}
-        sx={{
-          objectFit: "cover",
-          borderTopLeftRadius: "inherit",
-          borderTopRightRadius: "inherit",
-        }}
+        sx={{ objectFit: 'cover' }}
       />
-      <CardContent sx={{ flexGrow: 1, pt: 2, px: 2 }}>
-        <Typography variant="h6" component="h3" gutterBottom fontWeight={600}>
+      <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', gap: 2 }}>
+        <Typography variant="h6" color="primary" fontWeight={700} gutterBottom noWrap>
           {project.name}
         </Typography>
-        <Typography
-          variant="body2"
-          color="text.secondary"
-        
-          sx={{ minHeight: 60 }}
-        >
+        <Typography variant="body2" color="text.secondary" sx={{ minHeight: 60 }}>
           {project.description.length > 130
             ? `${project.description.substring(0, 130)}...`
             : project.description}
         </Typography>
-        <Box>
-          <Typography
-            variant="caption"
-            sx={{
-              bgcolor: "primary.main",
-              color: "white",
-              px: 1.5,
-              py: 0.5,
-              borderRadius: 8,
-              fontSize: "0.75rem",
-              fontWeight: "bold",
-              textTransform: "uppercase",
-            }}
+        <Chip label={project.framework} color="secondary" size="small" sx={{ fontWeight: 'bold', mb: 1 }} />
+        <Box mt={2}>
+          <Button
+            href={project.link.trim()}
+            target="_blank"
+            variant="outlined"
+            color="primary"
+            startIcon={<FaGithub />}
+            fullWidth
+            sx={{ fontWeight: 600 }}
           >
-            {project.framework}
-          </Typography>
+            View on GitHub
+          </Button>
         </Box>
       </CardContent>
-      <Box px={2} pb={2} pt={0}>
-        <Button
-          variant="outlined"
-          color="primary"
-          href={project.link.trim()}
-          target="_blank"
-          startIcon={<GitHubIcon fontSize="small" />}
-          sx={{
-            textTransform: "none",
-            fontWeight: 500,
-            borderColor: "primary.main",
-            "&:hover": {
-              borderColor: "primary.dark",
-              bgcolor: "action.hover",
-            },
-          }}
-        >
-          View on GitHub
-        </Button>
-      </Box>
     </Card>
   );
 }

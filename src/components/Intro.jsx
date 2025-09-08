@@ -4,7 +4,7 @@ import { Link as RouterLink } from "react-router-dom";
 
 export default function Intro() {
   return (
-    <Container maxWidth="lg" sx={{ mt: 4, mb: 6 }}>
+  <Container maxWidth="lg" sx={{ mt: 4, mb: 6, backgroundColor: 'background.paper', borderRadius: 3, boxShadow: 2 }}>
       <Box
         display="flex"
         flexDirection={{ xs: "column", md: "row" }}
@@ -17,10 +17,12 @@ export default function Intro() {
             component="h1"
             fontWeight="bold"
             gutterBottom
+            color="primary"
+            sx={{ fontFamily: 'Poppins, Noto Sans JP, Comic Neue, cursive, sans-serif' }}
           >
             My name is Tlou Given Moreti
           </Typography>
-          <Typography variant="body1">
+          <Typography variant="body1" color="text.secondary" sx={{ fontFamily: 'Poppins, Noto Sans JP, Comic Neue, cursive, sans-serif' }}>
             A final year BSc. Information Technology (Full-time, Distance)
             student at North West University. I am an aspiring backend software
             engineer with a keen passion for the .NET framework. I have hands-on
